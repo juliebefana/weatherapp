@@ -5,6 +5,7 @@ const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
+// Function to get the current time in HH:MM format
 function getCurrentTime() {
   const currentDate = new Date();
   const currentHours = currentDate.getHours().toString().padStart(2, "0");
@@ -29,6 +30,7 @@ function updateDateTime() {
   currentDateTimeElement.innerHTML = currentDateTime;
 }
 
+// Function to fetch and update weather data for a given city
 async function checkWeather(city) {
   const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
@@ -62,10 +64,12 @@ async function checkWeather(city) {
   }
 }
 
+// Event listener for search button click
 searchBtn.addEventListener("click", () => {
   checkWeather(searchBox.value);
 });
 
+// Event listener for Enter key press in search box
 searchBox.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
